@@ -4,6 +4,7 @@ import string
 pass_patern_lower = re.compile(fr'[{string.ascii_lowercase}+]')
 pass_pattern_upper = re.compile(fr'[{string.ascii_uppercase}+]')
 pass_pattern_punctuation = re.compile(fr'[{string.punctuation}+]')
+pass_pattern_digits = re.compile(r'[0-9]+')
 
 
 def check_password(password:str) ->str:
@@ -17,6 +18,8 @@ def check_password(password:str) ->str:
             result.append('No symbols upper')
         if not pass_pattern_punctuation.findall(password):
             result.append('No special symbols')
+        if not pass_pattern_digits.findall(password):
+            result.append('No digits')
         if len(result) == 0:
             return f'Password: "{password}" - is correct !'
         else:
